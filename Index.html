@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>atherTrading</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Animations -->
+<style>
+   @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-fade { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse { animation: pulse 3s infinite; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .text-gradient {
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+        .icon-hover:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+        }
+</style>
+</head>
+<body class=" font-sans">
+<!-- Navbar Start -->
+<nav class="bg-blue-700 text-white sticky top-0 z-50" style=" background: linear-gradient(90deg, #0d78adff 0%, #5939b1ff 80%);" >
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between py-2 h-26 items-center">
+
+      <!-- LOGO Branding -->
+      <a href="Index.html" class="text-2xl font-bold flex items-center">
+        <img src="Images/logo.png" alt="logo" style="height: 70px; width:120px;">
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-10 text-xl items-center">
+        <a href="./index.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">Home</a>
+        <a href="./about.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">About Us</a>
+        <div class="relative group">
+            <a href="./product.html"  class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 group-hover:after:scale-x-110">Our Products</a>
+            <!-- Dropdown Box -->
+            <div class="absolute left-0 mt-5 font-semibold w-64 bg-white text-sm text-black rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50" style="font-size:18px;">
+                <a href="./products/garment.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white ">Garments</a>
+                <a href="./products/food.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Food and Beverages</a>
+                <a href="./products/handicraft.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Handicrafts and Stationery</a>
+                <a href="./products/pet.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Pet Products</a>
+                <a href="./products/leather.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Leather Products</a>
+                <a href="./products/dailyitems.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Daily Useful Items</a>
+                <a href="./products/solar.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Solar Products</a>
+            </div>
+        </div>
+
+        <a href="./contact.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">Contact Us</a>
+      </div>
+
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="./enquiry.html" class="relative font-bold  hover:after:scale-x-110 text-3xl hover:text-yellow-400 text-yellow-500" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Enquiry Now</a>
+        <!-- <a href="./booknow.html" class="font-semibold bg-yellow-300 text-black px-4 py-2 rounded hover:bg-yellow-500 transition">Enquiry Now</a> -->
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-button" aria-label="Toggle Menu" class="focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 py-6 space-y-3">
+    <a href="index.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Home</a>
+    <a href="about.html" class="block text-white text-lg font-semibold hover:text-yellow-300">About Us </a>
+    <a href="product.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Our Products </a>
+    <a href="contact.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Contact Us</a>
+    <a href="enquiry.html" class="block text-center bg-yellow-400 text-black text-lg font-semibold py-2 rounded-md hover:bg-yellow-300 transition">Enquiry Now</a>
+  </div>
+</nav>
+<!-- Navbar End -->
+
+
+ <!-- ===== HERO SECTION ===== -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-blue-200 to-amber-100">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float"></div>
+            <div class="absolute top-1/3 right-0 w-96 h-96 bg-emerald-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float delay-200"></div>
+            <div class="absolute bottom-0 left-1/3 w-80 h-80 bg-teal-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float delay-400"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 lg:py-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column - Text Content -->
+                <div class="animate-fade">
+                    <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm mb-6">
+                        <i class="fas fa-certificate text-blue-600 mr-2"></i>
+                        <span class="text-sm font-medium text-gray-700">Trusted Since 2020</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                        <span class="block text-gray-900">Welcome To </span>
+                        <span class="text-gradient ">Athar Trading</span>
+                     
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 max-w-lg">
+                        Ather Trading delivers high-quality Products and raw materials with unmatched reliability across global markets.
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="../enquiry.html" class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
+                            <i class="fa-solid fa-circle-question mr-2"></i>Enquiry Now
+                        </a>
+                        <a href="../contact.html" class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg font-medium flex items-center justify-center hover:bg-blue-50 transition-colors">
+                            <i class="fas fa-phone mr-2"></i> Contact Us
+                        </a>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="flex flex-wrap gap-6 mt-10">
+                        <div class="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                            <div class="bg-blue-100 p-2 rounded-full mr-3 icon-hover transition-transform">
+                                <i class="fas fa-globe-asia text-blue-600"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">Global Supply Network</span>
+                        </div>
+                        <div class="flex items-center bg-white px-4 py-2 rounded-full shadow-sm">
+                            <div class="bg-emerald-100 p-2 rounded-full mr-3 icon-hover transition-transform">
+                                <i class="fas fa-award text-emerald-600"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">Quality Certified</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Image -->
+                <div class="animate-fade delay-100">
+                    <div class="relative hover-scale">
+                        <img src="http://www.athertrading.com/img/abouts-uss.jpg" 
+                             alt="Ather Trading Solar Panels" 
+                             class="w-full rounded-xl shadow-2xl border-8 border-white">
+                        
+                        <!-- Achievement Badge -->
+                        <div class="absolute -bottom-5 -right-5 bg-white p-5 rounded-xl shadow-lg animate-pulse">
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 p-3 rounded-full mr-3">
+                                    <i class="fas fa-bolt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">Exported to</p>
+                                    <p class="font-bold text-gray-900">5+ Countries</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Decorative Icons -->
+        <div class="hidden lg:block">
+            <i class="fas fa-solar-panel text-blue-200 text-6xl absolute top-1/4 left-10 animate-float delay-300"></i>
+            <i class="fas fa-chart-line text-emerald-200 text-5xl absolute bottom-1/3 right-16 animate-float delay-500"></i>
+        </div>
+    </section>
+
+
+<!-- About Us Section -->
+    <section class="py-10 bg-gray-100 px-4 sm:px-6 lg:px-8 w-full">
+        <h1 class="text-5xl md:text-7xl mx-auto text-center mb-10 font-bold gradient-text" >
+            About Us
+        </h1>
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column - Image with Animation -->
+             
+            <div class="relative animate-fade-left">
+                <!-- Main image with shape morphing border -->
+                <div class="image-border overflow-hidden shadow-2xl hover-scale">
+                    <img src="../Images/about1.jpg" 
+                         alt="AtherTrading Team" 
+                         class="w-full h-auto object-cover">
+                </div>
+                
+                <!-- Floating achievement badge -->
+                <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg animate-float delay-300">
+                    <div class="flex items-center">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-3">
+                            <i class="fas fa-trophy text-indigo-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-gray-900">Best</div>
+                            <div class="text-xs text-gray-500">Trading Platform 2025</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Floating experience badge -->
+                <div class="absolute -top-6 -left-6 bg-white p-4 rounded-xl shadow-lg animate-float delay-400">
+                    <div class="flex items-center">
+                        <div class="bg-green-100 p-3 rounded-full mr-3">
+                            <i class="fas fa-calendar-check text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-gray-900">4 +</div>
+                            <div class="text-xs text-gray-500">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - Text Content with Animation -->
+            <div style="max-width: 800px; margin: auto; line-height: 1.8; font-size: 16px; color: #333;">
+                <span class="inline-flex items-center px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium mb-6">
+                    <i class="fas fa-info-circle mr-2"></i> Who We Are ?
+                </span>
+                    
+                    <p>
+                        <i class="fa-solid fa-building" style="color:#0d78ad;"></i>
+                        <strong>Established:</strong> 2020, based in Raipur, Chhattisgarh, Ather Trading is a reputed and audited firm with a strong presence in the solar energy sector.
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-award" style="color:#5939b1;"></i>
+                        <strong>Experience:</strong> Over 4 years of consistent and credible performance, building a trusted name in the wholesale supply of:
+                    </p>
+                    
+                    <ul style="list-style: none; padding-left: 20px;">
+                        <li><i class="fa-solid fa-solar-panel" style="color:#ffc800;"></i> Solar modules</li>
+                        <li><i class="fa-solid fa-box-open" style="color:#0d78ad;"></i> Raw materials</li>
+                        <li><i class="fa-solid fa-recycle" style="color:#27ae60;"></i> Scrap components</li>
+                    </ul>
+
+                    <p>
+                        <i class="fa-solid fa-globe" style="color:#5939b1;"></i>
+                        <strong>Diversified Exports:</strong> Wide range of products including:
+                    </p>
+                    
+                    <ul style="list-style: none; padding-left: 20px;">
+                        <li><i class="fa-solid fa-pepper-hot" style="color:#e67e22;"></i> Spices</li>
+                        <li><i class="fa-solid fa-carrot" style="color:#f39c12;"></i> Fresh agricultural produce</li>
+                        <li><i class="fa-solid fa-lemon" style="color:#f1c40f;"></i> Seasonal fruits (e.g., mangoes)</li>
+                        <li><i class="fa-solid fa-seedling" style="color:#27ae60;"></i> Groceries</li>
+                        <li><i class="fa-solid fa-jar" style="color:#8e44ad;"></i> Pickles</li>
+                        <li><i class="fa-solid fa-mug-hot" style="color:#c0392b;"></i> Premium tea</li>
+                        <li><i class="fa-solid fa-leaf" style="color:#16a085;"></i> Pan masala</li>
+                    </ul>
+
+                    <p>
+                        <i class="fa-solid fa-paint-brush" style="color:#d35400;"></i>
+                        <strong>Handcrafted & Stationery:</strong> Handmade décor, tissues, and essential supplies.
+                    </p>
+                    
+                    <p>
+                        <i class="fa-solid fa-paw" style="color:#e74c3c;"></i>
+                        <strong>Pet Products:</strong> Cat litters, belts, collars, grooming items.
+                    </p>
+                    
+                    <p>
+                        <i class="fa-solid fa-wallet" style="color:#2c3e50;"></i>
+                        <strong>Leather Goods:</strong> Belts, wallets.
+                    </p>
+
+                    </div>
+        <!-- Floating decorative elements -->
+        <div class="hidden lg:block">
+            <i class="fas fa-circle text-indigo-100 text-6xl absolute left-0 top-1/4 -translate-x-1/2 animate-float delay-200"></i>
+            <i class="fas fa-square text-purple-100 text-5xl absolute right-0 top-1/3 translate-x-1/2 animate-float delay-400"></i>
+        </div>
+    </section>
+
+
+ 
+
+
+ <!-- Client Reviews Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 w-full bg-gray-100 overflow-hidden">
+        <div class="text-center mb-12 animate-fade">
+            <h2 class="text-5xl md:text-4xl font-bold text-gray-900 mb-4">
+                What Our <span class="text-gradient">Clients Say ?</span>
+            </h2>
+         <em> <p class="text-lg text-gray-600 max-w-2xl mx-auto animate-fade delay-100">
+                Trusted by solar businesses and manufacturers worldwide" 
+            </p></em>
+        </div>
+
+        <!-- Horizontal Scrolling Container -->
+        <div class="relative">
+            <!-- Scrollable Content -->
+            <div class="review-scroll-container flex overflow-x-auto pb-8 -mx-4 px-4 space-x-6 snap-x snap-mandatory" id="reviewContainer">
+                <!-- Review Card 1 -->
+               <div class="review-card bg-white rounded-xl border border-2 shadow-md p-8 flex flex-col animate-slide delay-200">
+                    <div class="w-[142px] h-[142px] rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto mb-4">
+                        <img src="../Images/client1.webp" alt="Rajesh Kumar" class=" object-cover">
+                    </div>
+                    <div class="text-center mb-6">
+                        <h4 class="font-bold text-blue-600 text-2xl">Arif Qureshi</h4>
+                        <p class="text-md text-gray-600 mt-3">Client</p>
+                        <div class="flex justify-center mt-2 text-amber-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-2 text-justify  flex-grow" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> 
+                            " Ather Trading provides quality products at fair prices. Their team is professional, supportive, and always delivers on time. "
+                    </p>
+                    <div class="text-blue-400 text-4xl  self-end">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="review-card bg-white rounded-xl border border-2 shadow-md p-8 flex flex-col animate-slide delay-200">
+                    <div class="w-[142px] h-[142px] rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto mb-4">
+                        <img src="../Images/client2.jpg" alt="Rajesh Kumar" class="w-full h-full object-cover bg-cover">
+                    </div>
+                    <div class="text-center mb-6">
+                        <h4 class="font-bold text-blue-600 text-2xl">Poonam Sharma</h4>
+                        <p class="text-md text-gray-600 mt-3">Client</p>
+                        <div class="flex justify-center mt-2 text-amber-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-2 text-justify  flex-grow" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                       " Ather Trading provides quality products at fair prices. Their team is professional, supportive, and always delivers on time."
+                    </p>
+                    <div class="text-blue-400 text-4xl  self-end">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="review-card bg-white rounded-xl border border-2 shadow-md p-8 flex flex-col animate-slide delay-200">
+                    <div class="w-[142px] h-[142px] rounded-full overflow-hidden border-4 border-white shadow-lg mx-auto mb-4">
+                        <img src="../Images/client3.avif" alt="Rajesh Kumar" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center mb-6">
+                        <h4 class="font-bold text-blue-600 text-2xl">Daniel Verma </h4>
+                        <p class="text-md text-gray-600 mt-3">Client</p>
+                        <div class="flex justify-center mt-2 text-amber-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-2 text-justify  flex-grow" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                        "Ather Trading provides quality products at fair prices. Their team is professional, supportive, and always delivers on time."
+                    </p>
+                    <div class="text-blue-400 text-4xl  self-end">
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white p-3 rounded-full shadow-md hover:shadow-lg transition-all z-10" id="prevBtn">
+                <i class="fas fa-chevron-left text-gray-700"></i>
+            </button>
+            <button class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white p-3 rounded-full shadow-md hover:shadow-lg transition-all z-10" id="nextBtn">
+                <i class="fas fa-chevron-right text-gray-700"></i>
+            </button>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="flex justify-center mt-8 space-x-2 animate-fade delay-500">
+            <div class="w-3 h-3 rounded-full bg-gray-300 review-indicator active"></div>
+            <div class="w-3 h-3 rounded-full bg-gray-300 review-indicator"></div>
+            <div class="w-3 h-3 rounded-full bg-gray-300 review-indicator"></div>
+        </div>
+    </section>
+
+
+<!-- Mission & Vision Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 w-full bg-gray-50">
+        <div class="text-center mb-16 animate-fade">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Our <span class="text-gradient">Core Beliefs</span>
+            </h2>
+            <div class="w-20 h-1 bg-emerald-500 mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10 lg:gap-16">
+            <!-- Mission Card -->
+            <div class="bg-white rounded-xl shadow-lg p-8 card-hover animate-fade delay-100">
+                <div class="flex flex-col items-center text-center">
+                    <div class="bg-blue-100 p-5 rounded-full mb-6 icon-hover">
+                        <i class="fas fa-bullseye text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                    <p class="text-gray-600 mb-6">
+                        To revolutionize the solar energy sector by providing high-quality, sustainable products that empower businesses and communities to transition to clean energy solutions.
+                    </p>
+                    <ul class="space-y-3 text-left text-gray-600 w-full">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1 mr-3"></i>
+                            <span>Deliver premium solar components at competitive prices</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1 mr-3"></i>
+                            <span>Maintain transparent and ethical business practices</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1 mr-3"></i>
+                            <span>Foster long-term partnerships with clients and suppliers</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Vision Card -->
+            <div class="bg-white rounded-xl shadow-lg p-8 card-hover animate-fade delay-200">
+                <div class="flex flex-col items-center text-center">
+                    <div class="bg-purple-100 p-5 rounded-full mb-6 icon-hover">
+                        <i class="fas fa-eye text-purple-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                    <p class="text-gray-600 mb-6">
+                        To become the most trusted global partner in solar energy distribution, recognized for our innovation, reliability, and commitment to a sustainable future.
+                    </p>
+                    <ul class="space-y-3 text-left text-gray-600 w-full">
+                        <li class="flex items-start">
+                            <i class="fas fa-rocket text-blue-500 mt-1 mr-3"></i>
+                            <span>Expand to 30+ countries by 2025</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-leaf text-green-500 mt-1 mr-3"></i>
+                            <span>Reduce carbon footprint by 40% across our supply chain</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-lightbulb text-amber-500 mt-1 mr-3"></i>
+                            <span>Pioneer innovative solar solutions for emerging markets</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Values Section -->
+        <div class="mt-20 animate-fade delay-300 ">
+            <h3 class="text-2xl font-bold text-center text-gray-900 mb-10">Our Core Values</h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:bg-blue-50 transition-colors">
+                    <div class="bg-blue-100 p-4 rounded-full inline-flex mb-4">
+                        <i class="fas fa-handshake text-blue-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg text-gray-900 mb-2">Integrity</h4>
+                    <p class="text-gray-600">We conduct business with honesty and transparency</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:bg-emerald-50 transition-colors">
+                    <div class="bg-emerald-100 p-4 rounded-full inline-flex mb-4">
+                        <i class="fas fa-cogs text-emerald-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg text-gray-900 mb-2">Innovation</h4>
+                    <p class="text-gray-600">We continuously improve our products and services</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:bg-amber-50 transition-colors">
+                    <div class="bg-amber-100 p-4 rounded-full inline-flex mb-4">
+                        <i class="fas fa-users text-amber-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg text-gray-900 mb-2">Collaboration</h4>
+                    <p class="text-gray-600">We believe in the power of partnerships</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:bg-purple-50 transition-colors">
+                    <div class="bg-purple-100 p-4 rounded-full inline-flex mb-4">
+                        <i class="fas fa-globe-asia text-purple-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-lg text-gray-900 mb-2">Sustainability</h4>
+                    <p class="text-gray-600">We're committed to environmental responsibility</p>
+                </div>
+            </div>
+        </div>
+    </section>    
+
+
+<!-- Product Cards Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 w-full bg-gray-100">
+      <div class="text-center mb-12">
+            <h1 class="text-5xl md:text-4xl font-bold text-gray-900 mb-4">
+                Browse Our <span class=" text-gradient">Product Categories</span>
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Discover quality products across all our trading categories
+            </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Product Card 1 -->
+            <div class="product-card bg-white overflow-hidden animate-fade flex flex-col">
+                <div class="p-4 pb-0 flex-grow">
+                    <h3 class="text-lg font-bold text-blue-500 mb-3">Garments </h3>
+                    <div class="h-[220px] overflow-hidden">
+                        <img src="http://www.athertrading.com/img/ladies-image.jpg" alt="garments" class="w-full h-full object-cover product-image transition-transform duration-300">
+                    </div>
+                </div>
+                <div class="p-4 pt-0 mt-auto">
+                    <a href="../products/garment.html" class="see-more-link inline-flex items-center text-md font-semibold text-gradient transition-all">
+                        See more products <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card bg-white overflow-hidden animate-fade flex flex-col">
+                <div class="p-4 pb-0 flex-grow">
+                    <h3 class="text-lg font-bold text-blue-500 mb-3">Agriculture Products</h3>
+                    <div class="h-[220px] overflow-hidden">
+                        <img src="http://www.athertrading.com/img/agriculture0909.jpg" alt="Agriculture Products" class="w-full h-full object-cover product-image transition-transform duration-300">
+                    </div>
+                </div>
+                <div class="p-4 pt-0 mt-auto">
+                    <a href="../products/agriculture.html" class="see-more-link inline-flex items-center text-md font-semibold text-gradient transition-all">
+                        See more products <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card bg-white overflow-hidden animate-fade flex flex-col">
+                <div class="p-4 pb-0 flex-grow">
+                    <h3 class="text-lg font-bold text-blue-500 mb-3">Food and Beverages</h3>
+                    <div class="h-[220px] overflow-hidden">
+                        <img src="http://www.athertrading.com/img/grocrey.jpg" alt="Food and Beverages" class="w-full h-full object-cover product-image transition-transform duration-300">
+                    </div>
+                </div>
+                <div class="p-4 pt-0 mt-auto">
+                    <a href="../products/food.html" class="see-more-link inline-flex items-center text-md font-semibold text-gradient transition-all">
+                        See more products <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card bg-white overflow-hidden animate-fade flex flex-col">
+                <div class="p-4 pb-0 flex-grow">
+                    <h3 class="text-lg font-bold text-blue-500 mb-3">Handicrafts and Stationery</h3>
+                    <div class="h-[220px] overflow-hidden">
+                        <img src="http://www.athertrading.com/img/Handicrafts-and-Stationery.jpg" alt="Handicrafts and Stationery" class="w-full h-full object-cover product-image transition-transform duration-300">
+                    </div>
+                </div>
+                <div class="p-4 pt-0 mt-auto">
+                    <a href="../products/handicraft.html" class="see-more-link inline-flex items-center text-md font-semibold text-gradient transition-all">
+                        See more products <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 5 -->
+            <div class="product-card bg-white overflow-hidden animate-fade flex flex-col">
+                <div class="p-4 pb-0 flex-grow">
+                    <h3 class="text-lg font-bold text-blue-500 mb-3">Pet Products</h3>
+                    <div class="h-[220px] overflow-hidden">
+                        <img src="http://www.athertrading.com/img/Pet-Accessories.jpg" alt="Pet Products" class="w-full h-full object-cover product-image transition-transform duration-300">
+                    </div>
+                </div>
+                <div class="p-4 pt-0 mt-auto">
+                    <a href="../products/pet.html" class="see-more-link inline-flex items-center text-md font-semibold text-gradient transition-all">
+                        See more products <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 6 -->
+            <div class="product-card bg-white overflow-hidden animate-fade flex flex-col">
+                <div class="p-4 pb-0 flex-grow">
+                    <h3 class="text-lg font-bold text-blue-500 mb-3">Leather Products</h3>
+                    <div class="h-[220px] overflow-hidden">
+                        <img src="http://www.athertrading.com/img/leather-pro.jpg" alt="leather product" class="w-full h-full object-cover product-image transition-transform duration-300">
+                    </div>
+                </div>
+                <div class="p-4 pt-0 mt-auto">
+                    <a href="../products/leather.html" class="see-more-link inline-flex items-center text-md font-semibold text-gradient transition-all">
+                        See more products <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 7 -->
+            <div class="product-card bg-white overflow-hidden animate-fade flex flex-col">
+                <div class="p-4 pb-0 flex-grow">
+                    <h3 class="text-lg font-bold text-blue-500 mb-3">Daily Useful Items/h3>
+                    <div class="h-[220px] overflow-hidden">
+                        <img src="http://www.athertrading.com/img/Household-essentials.jpg" alt=" daily items " class="w-full h-full object-cover product-image transition-transform duration-300">
+                    </div>
+                </div>
+                <div class="p-4 pt-0 mt-auto">
+                    <a href="../products/dailyitems.html" class="see-more-link inline-flex items-center text-md font-semibold text-gradient transition-all">
+                        See more products <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product Card 8 -->
+            <div class="product-card bg-white overflow-hidden animate-fade flex flex-col">
+                <div class="p-4 pb-0 flex-grow">
+                    <h3 class="text-lg font-bold text-blue-500 mb-3">Solar Products</h3>
+                    <div class="h-[220px] overflow-hidden">
+                        <img src="http://www.athertrading.com/img/solar-to.jpg" alt="solar Products" class="w-full h-full object-cover product-image transition-transform duration-300">
+                    </div>
+                </div>
+                <div class="p-4 pt-0 mt-auto">
+                    <a href="../products/solar.html" class="see-more-link inline-flex items-center text-md font-semibold text-gradient transition-all">
+                        See more products <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+
+<!-- CTA -->
+    <div class="bg-gray-900">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+            <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                <span class="block">Ready to partner with us?</span>
+                <span class="block text-indigo-400">Get in touch today.</span>
+            </h2>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                <div class="inline-flex rounded-md shadow">
+                    <a href="../contact.html" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- Footer Section -->
+<footer  class="bg-gray-900 text-white" id="footer">
+  <div class="py-10 border-b border-gray-700" class="footer-top">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Contact Info -->
+      <div class="footer-contact">
+        <div class="flex justify-center items-center">
+          <img src="Images/logo.png" alt="logo" class="h-20 w-30 mb-6">
+        </div>
+        <p class="text-justify " style="font-size: 17px;">Established in 2020 and based in Raipur, Chhattisgarh, Ather Trading is a reputed and audited firm with a strong presence in the solar energy sector. With over 4 years of consistent and credible performance, we have built a trusted name in the wholesale supply of solar modules, raw materials, and scrap components</p>
+      </div>
+
+      <!-- Our Location -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Our Location</h4>
+        <div class="space-y-3 text-white pl-10">
+  
+          <!-- Name -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-user text-yellow-400 text-lg"></i>
+            <span>Mohd Naqueebul Haque</span>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-phone text-yellow-400 text-lg"></i>
+            <span>+91-6305781183</span>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-envelope text-yellow-400 text-lg"></i>
+            <span>ather.trading2016@gmail.com</span>
+          </div>
+
+          <!-- Address -->
+          <div class="flex items-start space-x-3">
+            <i class="fa-solid fa-location-dot text-yellow-400 text-lg mt-1"></i>
+            <span class="text-justify">Plot No. 39 , Beside  Sai  Ashirwad  Pride  City , Nanihal   Vihar , Mungeli Road , Pacheda  , Raipur, Chhattisgarh – 492101</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Essential Links -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Essential Links</h4>
+        <ul class="space-y-3 text-white pl-16">
+          <!-- Home -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-house text-yellow-400 text-lg"></i>
+            <a href="index.html" class="hover:text-yellow-400 transition">Home</a>
+          </li>
+
+          <!-- About Us -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-user-group text-yellow-400 text-lg"></i>
+            <a href="about.html" class="hover:text-yellow-400 transition">About Us</a>
+          </li>
+
+          <!-- Our Products -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-box-open text-yellow-400 text-lg"></i>
+            <a href="product.html" class="hover:text-yellow-400 transition">Our Products</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-phone text-yellow-400 text-lg"></i>
+            <a href="contact.html" class="hover:text-yellow-400 transition">Contact Us</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Social Networks -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Our Social Networks</h4>
+        <div class="flex justify-center items-center">
+          <img src="Images/worldindia1.png" alt="World India 1" class="h-[120px] w-auto object-contain">
+        </div>
+
+
+        <div class="flex justify-center space-x-4 text-xl social-links mt-8">
+          <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-vimeo-v"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+   <!-- Copyright -->
+  
+  <div class="bg-gray-800 py-5" >
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-400">
+    © <span class="text-white font-semibold">Ather Trading 2025</span> | All Rights Reserved. 
+    <span class="block sm:inline">Designed By 
+      <a href="https://www.worldsindia.com" target="_blank" class="text-yellow-400 hover:underline">
+        www.worldsindia.com
+      </a>
+    </span>
+  </div>
+</div>
+
+
+</footer>
+<!-- Footer -->
+
+
+
+<script>
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+ 
+
+
+
+
+
+
+
+
+ 
+  
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+  <script>
+    
+  </script>
+</body>
+</html>

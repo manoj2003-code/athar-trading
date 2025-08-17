@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+}
+
+
+
+/* Footer base */
+#footer {
+  /* padding: 0 0 30px 0; */
+  color: white;
+  font-size: 14px;
+  background-color: #1F242C;
+  text-align: center;
+}
+
+/* Footer Top Section */
+.footer-top {
+  padding: 30px 0;
+  background-color: #1F242C;
+  color: white;
+}
+
+/* Contact Section */
+.footer-contact {
+  margin-bottom: 10px;
+  line-height: 2;
+}
+.footer-contact h3 {
+  color: #ffc800;
+}
+.footer-contact h4 {
+  font-size: 22px;
+  margin: 0 0 30px 0;
+  padding: 2px 0;
+  line-height: 1;
+  font-weight: 700;
+}
+.footer-contact p {
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 0;
+  color: white;
+}
+
+/* Links Section */
+.footer-links {
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+.footer-links h4 {
+  color: #ffc800;
+  font-size: 30px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 12px;
+}
+.footer-links ul {
+  list-style: none;
+  /* padding: 0; */
+  margin: 0;
+}
+.footer-links ul li {
+  padding: 10px 0;
+}
+.footer-links ul li a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  line-height: 1;
+  font-weight: 600;
+  transition: 0.5s ease;
+}
+.footer-links ul li a:hover {
+  color: #ffc800;
+}
+
+/* Social Links */
+.social-links a {
+  font-size: 18px;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #373737;
+  color: white;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 50%;
+  width: 36px;
+  transition: 0.5s ease;
+  text-align: center;
+}
+.social-links a:hover {
+  background-color: #ffc800;
+  color: white;
+}
+
+/* Copyright */
+.copyright {
+  color: #ffffff;
+  font-size: 13px;  
+}
+
+/* Responsive Alignment */
+.footer-top > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

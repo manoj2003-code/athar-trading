@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>atherTrading</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Animations -->
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-fade { animation: fadeIn 1s ease-out forwards; }
+        .animate-slide-up { animation: slideInUp 0.8s ease-out forwards; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .text-gradient {
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class=" font-sans">
+<!-- Navbar Start -->
+<nav class="bg-blue-700 text-white sticky top-0 z-50" style="  background: linear-gradient(90deg, #0d78adff 0%, #5939b1ff 80%);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between py-2 h-26 items-center">
+
+      <!-- LOGO Branding -->
+      <a href="Index.html" class="text-2xl font-bold flex items-center">
+        <img src="Images/logo.png" alt="logo" style="height: 70px; width:120px;">
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-10 text-xl items-center">
+        <a href="./index.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">Home</a>
+        <a href="./about.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">About Us</a>
+        <div class="relative group">
+            <a href="./product.html"  class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 group-hover:after:scale-x-110">Our Products</a>
+            <!-- Dropdown Box -->
+            <div class="absolute left-0 mt-5 font-semibold w-64 bg-white text-sm text-black rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50" style="font-size:18px;">
+                <a href="./products/garment.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white ">Garments</a>
+                <a href="./products/food.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Food and Beverages</a>
+                <a href="./products/handicraft.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Handicrafts and Stationery</a>
+                <a href="./products/pet.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Pet Products</a>
+                <a href="./products/leather.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Leather Products</a>
+                <a href="./products/dailyitems.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Daily Useful Items</a>
+                <a href="./products/solar.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Solar Products</a>
+            </div>
+        </div>
+
+        <a href="./contact.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">Contact Us</a>
+      </div>
+
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="./enquiry.html" class="relative font-bold  hover:after:scale-x-110 text-3xl hover:text-yellow-400 text-yellow-500" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Enquiry Now</a>
+        <!-- <a href="./booknow.html" class="font-semibold bg-yellow-300 text-black px-4 py-2 rounded hover:bg-yellow-500 transition">Enquiry Now</a> -->
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-button" aria-label="Toggle Menu" class="focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 py-6 space-y-3">
+    <a href="index.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Home</a>
+    <a href="about.html" class="block text-white text-lg font-semibold hover:text-yellow-300">About Us </a>
+    <a href="product.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Our Products </a>
+    <a href="contact.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Contact Us</a>
+    <a href="enquiry.html" class="block text-center bg-yellow-400 text-black text-lg font-semibold py-2 rounded-md hover:bg-yellow-300 transition">Enquiry Now</a>
+  </div>
+</nav>
+<!-- Navbar End -->
+
+
+<!-- Contact Hero Section -->
+    <section class="relative overflow-hidden bg-gray-100">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float"></div>
+            <div class="absolute top-1/3 right-0 w-96 h-96 bg-emerald-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float delay-200"></div>
+            <div class="absolute bottom-0 left-1/3 w-80 h-80 bg-purple-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float delay-400"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-28 lg:py-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column - Text Content -->
+                <div class="animate-slide-up">
+                    <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm mb-6 animate-fade">
+                        <i class="fas fa-envelope-open-text text-blue-600 mr-2"></i>
+                        <span class="text-sm font-medium text-gray-700">Get in Touch</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                        <span class="block text-gray-900">Let's Build</span>
+                        <span class="text-gradient">Something Great</span>
+                        <span class="block text-gray-900">Together</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 max-w-lg">
+                        Whether you have questions about our solar products, need a quote, or want to discuss partnership opportunities, our team is ready to assist you.
+                    </p>
+
+                </div>
+                
+                <!-- Right Column - Image -->
+                <div class="animate-slide-up delay-100">
+                    <div class="relative hover-scale">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Contact Ather Trading" 
+                             class="w-full rounded-xl shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Contact Information Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 mw-full bg-gray-50">
+        <div class="text-center mb-12 animate-fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Reach Out to <span class="text-gradient">Our Team</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                We're always available to answer your questions and discuss your solar energy needs.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Phone Card -->
+            <div class="contact-card hover-scale bg-white rounded-xl shadow-md p-8 text-center animate-fade-up delay-100">
+                <div class="contact-icon bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform">
+                    <i class="fas fa-phone-alt text-blue-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Phone</h3>
+                <p class="text-gray-600 mb-4">Speak directly with our solar experts</p>
+                <div class="space-y-2">
+                    <a href="tel:+916305781183" class="block text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                        +91-6305781183
+                    </a>
+                    <a href="tel:+916261106163" class="block text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                        +91-6261106163
+                    </a>
+                </div>
+                <div class="mt-6 pt-6 border-t border-gray-100">
+                    <p class="text-sm text-gray-500">Mon-Fri: 9AM - 6PM</p>
+                    <p class="text-sm text-gray-500">Sat: 10AM - 4PM</p>
+                </div>
+            </div>
+
+            <!-- Email Card -->
+            <div class="contact-card hover-scale bg-white rounded-xl shadow-md p-8 text-center animate-fade-up delay-200">
+                <div class="contact-icon bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform">
+                    <i class="fas fa-envelope text-emerald-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Email</h3>
+                <p class="text-gray-600 mb-4">Send us your inquiries and quotes requests</p>
+                <div class="space-y-2">
+                    <a href="mailto:ather.trading2016@gmail.com" class="block text-lg font-semibold text-gray-900 hover:text-emerald-600 transition-colors">
+                        ather.trading2016@gmail.com
+                    </a>
+                    <a href="mailto:suhail.ather@gmail.com" class="block text-lg font-semibold text-gray-900 hover:text-emerald-600 transition-colors">
+                        suhail.ather@gmail.com
+                    </a>
+                </div>
+                <div class="mt-6 pt-6 border-t border-gray-100">
+                    <p class="text-sm text-gray-500">Typically respond within 24 hours</p>
+                </div>
+            </div>
+
+            <!-- Address Card -->
+            <div class="contact-card hover-scale bg-white rounded-xl shadow-md p-8 text-center animate-fade-up delay-300">
+                <div class="contact-icon bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform">
+                    <i class="fas fa-map-marker-alt text-purple-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Address</h3>
+                <p class="text-gray-600 mb-4">Visit our office in Raipur</p>
+                <div class="space-y-2">
+                    <p class="text-lg font-semibold text-gray-900">
+                        Ather Trading Pvt. Ltd.
+                    </p>
+                    <p class="text-gray-700">
+                        Plot No. 39, Beside Sai Ashirwad Pride City, Nanihal Vihar, Mungeli Road, Pacheda, Raipur, Chhattisgarh – 492101
+                    </p>
+                </div>
+                <div class="mt-6 pt-6 border-t border-gray-100">
+                    <a href="https://maps.google.com?q=Sai+Aashirwad+Pride+City+Pacheda,+Near+Vidhansabha+Road,+near+DIMAT+College,+near+Mata+Kaushalya+Temple,+Raipur,+Chhattisgarh+492101" class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                        <i class="fas fa-directions mr-2"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Contact Options -->
+        <div class="mt-16 bg-white rounded-xl shadow-md p-8 animate-fade-up delay-400">
+            <h3 class="text-2xl font-bold text-center text-gray-900 mb-8">Other Ways to Connect</h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="#" class="flex flex-col items-center p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                    <div class="bg-blue-100 p-4 rounded-full mb-3">
+                        <i class="fab fa-whatsapp text-blue-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900">WhatsApp</h4>
+                    <p class="text-sm text-gray-600 mt-1">Chat instantly</p>
+                </a>
+                <a href="#" class="flex flex-col items-center p-4 rounded-lg hover:bg-blue-100 transition-colors">
+                    <div class="bg-blue-200 p-4 rounded-full mb-3">
+                        <i class="fab fa-linkedin-in text-blue-700 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900">LinkedIn</h4>
+                    <p class="text-sm text-gray-600 mt-1">Professional network</p>
+                </a>
+                <a href="#" class="flex flex-col items-center p-4 rounded-lg hover:bg-amber-50 transition-colors">
+                    <div class="bg-amber-100 p-4 rounded-full mb-3">
+                        <i class="fas fa-comment-dots text-amber-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900">Live Chat</h4>
+                    <p class="text-sm text-gray-600 mt-1">On our website</p>
+                </a>
+                <a href="#" class="flex flex-col items-center p-4 rounded-lg hover:bg-green-50 transition-colors">
+                    <div class="bg-green-100 p-4 rounded-full mb-3">
+                        <i class="fas fa-calendar-check text-green-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-gray-900">Book Meeting</h4>
+                    <p class="text-sm text-gray-600 mt-1">Schedule a call</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+ <!-- Map Section -->
+    <section class="py-6 px-4 sm:px-6 lg:px-8 w-full bg-gray-100">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Left Column - Map -->
+             
+            <div class="animate-fade">
+               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
+                    <span class="text-blue-900">Prime Location in</span> <span class="text-blue-600">Raipur</span>
+                </h2>
+                <div class="map-container shadow-xl mb-32 hover-scale">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.456123456789!2d81.6345674153381!3d21.23456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDE0JzA0LjQiTiA4McKwMzgnMDguNCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        class="w-full h-full">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Right Column - Location Details -->
+            <div class="animate-fade delay-100">
+               
+                
+                <div class="location-card bg-white p-6 rounded-lg shadow-md mb-8 transition-all hover:shadow-lg">
+                    <div class="flex items-start">
+                        <div class="location-icon bg-blue-100 p-4 rounded-full mr-4 transition-transform">
+                            <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Sai Aashirwad Pride City</h3>
+                            <p class="text-gray-600">
+                                Pacheda, Near Vidhansabha Road<br>
+                                Near DIMAT College<br>
+                                Near Mata Kaushalya Temple<br>
+                                Raipur, Chhattisgarh 492101
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Contact Form Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl bg-gray-50">
+        <div class="text-center mb-12 animate-fade">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Send Us a <span class="text-blue-600">Message</span>
+            </h2>
+            <p class="text-lg text-gray-600">
+                Have questions about our solar products? Fill out the form below and our team will get back to you within 24 hours.
+            </p>
+        </div>
+
+        <form id="contactForm" class="bg-white rounded-xl shadow-lg p-8 animate-fade delay-100">
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <!-- Name Field -->
+                <div class="input-focus border border-gray-300 rounded-lg p-3 transition-all">
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name*</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input type="text" id="name" name="name" required
+                               class="form-input flex-1 block w-full rounded-none rounded-r-md border-0 focus:ring-0">
+                    </div>
+                    <div id="nameError" class="error-message">Please enter your full name</div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="input-focus border border-gray-300 rounded-lg p-3 transition-all">
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email*</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" id="email" name="email" required
+                               class="form-input flex-1 block w-full rounded-none rounded-r-md border-0 focus:ring-0">
+                    </div>
+                    <div id="emailError" class="error-message">Please enter a valid email address</div>
+                </div>
+
+                <!-- Phone Field -->
+                <div class="input-focus border border-gray-300 rounded-lg p-3 transition-all">
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500">
+                            <i class="fas fa-phone-alt"></i>
+                        </span>
+                        <input type="tel" id="phone" name="phone"
+                               class="form-input flex-1 block w-full rounded-none rounded-r-md border-0 focus:ring-0">
+                    </div>
+                </div>
+
+                <!-- Company Field -->
+                <div class="input-focus border border-gray-300 rounded-lg p-3 transition-all">
+                    <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500">
+                            <i class="fas fa-building"></i>
+                        </span>
+                        <input type="text" id="company" name="company"
+                               class="form-input flex-1 block w-full rounded-none rounded-r-md border-0 focus:ring-0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject Field -->
+            <div class="mb-6 input-focus border border-gray-300 rounded-lg p-3 transition-all">
+                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject*</label>
+                <div class="flex">
+                    <span class="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500">
+                        <i class="fas fa-tag"></i>
+                    </span>
+                    <select id="subject" name="subject" required
+                            class="form-input flex-1 block w-full rounded-none rounded-r-md border-0 focus:ring-0">
+                        <option value="" disabled selected>Select a subject</option>
+                        <option value="sales">Sales Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="partnership">Partnership Opportunity</option>
+                        <option value="other">Other Question</option>
+                    </select>
+                </div>
+                <div id="subjectError" class="error-message">Please select a subject</div>
+            </div>
+
+            <!-- Message Field -->
+            <div class="mb-8 input-focus border border-gray-300 rounded-lg p-3 transition-all">
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message*</label>
+                <div class="flex">
+                    <span class="inline-flex items-start pt-3 px-3 rounded-l-md bg-gray-50 text-gray-500">
+                        <i class="fas fa-comment-dots"></i>
+                    </span>
+                    <textarea id="message" name="message" rows="5" required
+                              class="form-input flex-1 block w-full rounded-none rounded-r-md border-0 focus:ring-0"></textarea>
+                </div>
+                <div id="messageError" class="error-message">Please enter your message</div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex flex-col sm:flex-row justify-between items-center">
+                <button type="submit" 
+                        class="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg mb-4 sm:mb-0 w-full sm:w-auto">
+                    <i class="fas fa-paper-plane mr-2"></i> Send Message
+                </button>
+                <p class="text-sm text-gray-500">
+                    * Required fields
+                </p>
+            </div>
+
+            <!-- Success Message (hidden by default) -->
+            <div id="successMessage" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-lg">
+                <i class="fas fa-check-circle mr-2"></i>
+                Thank you! Your message has been sent successfully. We'll contact you soon.
+            </div>
+        </form>
+    </section>
+
+
+
+
+
+
+
+
+
+<!-- Footer Section -->
+<footer  class="bg-gray-900 text-white" id="footer">
+  <div class="py-10 border-b border-gray-700" class="footer-top">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Contact Info -->
+      <div class="footer-contact">
+        <div class="flex justify-center items-center">
+          <img src="Images/logo.png" alt="logo" class="h-20 w-30 mb-6">
+        </div>
+        <p class="text-justify " style="font-size: 17px;">Established in 2020 and based in Raipur, Chhattisgarh, Ather Trading is a reputed and audited firm with a strong presence in the solar energy sector. With over 4 years of consistent and credible performance, we have built a trusted name in the wholesale supply of solar modules, raw materials, and scrap components</p>
+      </div>
+
+      <!-- Our Location -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Our Location</h4>
+        <div class="space-y-3 text-white pl-10">
+  
+          <!-- Name -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-user text-yellow-400 text-lg"></i>
+            <span>Mohd Naqueebul Haque</span>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-phone text-yellow-400 text-lg"></i>
+            <span>+91-6305781183</span>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-envelope text-yellow-400 text-lg"></i>
+            <span>ather.trading2016@gmail.com</span>
+          </div>
+
+          <!-- Address -->
+          <div class="flex items-start space-x-3">
+            <i class="fa-solid fa-location-dot text-yellow-400 text-lg mt-1"></i>
+            <span class="text-justify">Plot No. 39 , Beside  Sai  Ashirwad  Pride  City , Nanihal   Vihar , Mungeli Road , Pacheda  , Raipur, Chhattisgarh – 492101</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Essential Links -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Essential Links</h4>
+        <ul class="space-y-3 text-white pl-16">
+          <!-- Home -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-house text-yellow-400 text-lg"></i>
+            <a href="index.html" class="hover:text-yellow-400 transition">Home</a>
+          </li>
+
+          <!-- About Us -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-user-group text-yellow-400 text-lg"></i>
+            <a href="about.html" class="hover:text-yellow-400 transition">About Us</a>
+          </li>
+
+          <!-- Our Products -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-box-open text-yellow-400 text-lg"></i>
+            <a href="product.html" class="hover:text-yellow-400 transition">Our Products</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-phone text-yellow-400 text-lg"></i>
+            <a href="contact.html" class="hover:text-yellow-400 transition">Contact Us</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Social Networks -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Our Social Networks</h4>
+        <div class="flex justify-center items-center">
+          <img src="Images/worldindia1.png" alt="World India 1" class="h-[120px] w-auto object-contain">
+        </div>
+
+
+        <div class="flex justify-center space-x-4 text-xl social-links mt-8">
+          <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-vimeo-v"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+   <!-- Copyright -->
+  
+  <div class="bg-gray-800 py-5" >
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-400">
+    © <span class="text-white font-semibold">Ather Trading 2025</span> | All Rights Reserved. 
+    <span class="block sm:inline">Designed By 
+      <a href="https://www.worldsindia.com" target="_blank" class="text-yellow-400 hover:underline">
+        www.worldsindia.com
+      </a>
+    </span>
+  </div>
+</div>
+</footer>
+<!-- Footer -->
+ 
+ 
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+   <script>
+        // Form Validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+            document.querySelectorAll('.input-focus').forEach(el => {
+                el.classList.remove('input-error');
+            });
+            
+            // Validate form
+            let isValid = true;
+            
+            // Name validation
+            const name = document.getElementById('name');
+            if (!name.value.trim()) {
+                document.getElementById('nameError').style.display = 'block';
+                name.closest('.input-focus').classList.add('input-error');
+                isValid = false;
+            }
+            
+            // Email validation
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                email.closest('.input-focus').classList.add('input-error');
+                isValid = false;
+            }
+            
+            // Subject validation
+            const subject = document.getElementById('subject');
+            if (!subject.value) {
+                document.getElementById('subjectError').style.display = 'block';
+                subject.closest('.input-focus').classList.add('input-error');
+                isValid = false;
+            }
+            
+            // Message validation
+            const message = document.getElementById('message');
+            if (!message.value.trim()) {
+                document.getElementById('messageError').style.display = 'block';
+                message.closest('.input-focus').classList.add('input-error');
+                isValid = false;
+            }
+            
+            // If valid, show success message
+            if (isValid) {
+                document.getElementById('successMessage').classList.remove('hidden');
+                this.reset();
+                
+                // Scroll to success message
+                setTimeout(() => {
+                    document.getElementById('successMessage').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                }, 100);
+            }
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

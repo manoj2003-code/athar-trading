@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>atherTrading</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Animations -->
+<style>
+ @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-fade { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-pulse { animation: pulse 2s infinite; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .text-gradient {
+            background: linear-gradient(90deg, #c35cf6, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .craft-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .craft-card:hover .craft-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #b15cf6, #6366f1);
+            color: white;
+        }
+        .category-chip:hover {
+            transform: translateY(-2px);
+            background-color: #8b5cf6;
+            color: white;
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.4);
+        }
+</style>
+</head>
+<body class=" font-sans">
+<!-- Navbar Start -->
+<nav class="bg-blue-700 text-white sticky top-0 z-50" style="  background: linear-gradient(90deg, #0d78adff 0%, #5939b1ff 80%);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between py-2 h-26 items-center">
+
+      <!-- LOGO Branding -->
+      <a href="Index.html" class="text-2xl font-bold flex items-center">
+        <img src="../Images/logo.png" alt="logo" style="height: 70px; width:120px;">
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-10 text-xl items-center">
+        <a href="../index.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">Home</a>
+        <a href="../about.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">About Us</a>
+        <div class="relative group">
+            <a href="../product.html"  class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 group-hover:after:scale-x-110">Our Products</a>
+            <!-- Dropdown Box -->
+            <div class="absolute left-0 mt-5 font-semibold w-64 bg-white text-sm text-black rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50" style="font-size:18px;">
+                <a href="../products/garment.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white ">Garments</a>
+                <a href="../products/food.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Food and Beverages</a>
+                <a href="../products/handicraft.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Handicrafts and Stationery</a>
+                <a href="../products/pet.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Pet Products</a>
+                <a href="../products/leather.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Leather Products</a>
+                <a href="../products/dailyitems.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Daily Useful Items</a>
+                <a href="../products/solar.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Solar Products</a>
+            </div>
+        </div>
+
+        <a href="../contact.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">Contact Us</a>
+      </div>
+
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="../enquiry.html" class="relative font-bold  hover:after:scale-x-110 text-3xl hover:text-yellow-400 text-yellow-500" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Enquiry Now</a>
+        <!-- <a href="./booknow.html" class="font-semibold bg-yellow-300 text-black px-4 py-2 rounded hover:bg-yellow-500 transition">Enquiry Now</a> -->
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-button" aria-label="Toggle Menu" class="focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 py-6 space-y-3">
+    <a href="../index.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Home</a>
+    <a href="../about.html" class="block text-white text-lg font-semibold hover:text-yellow-300">About Us </a>
+    <a href="../product.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Our Products </a>
+    <a href="../contact.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Contact Us</a>
+    <a href="../enquiry.html" class="block text-center bg-yellow-400 text-black text-lg font-semibold py-2 rounded-md hover:bg-yellow-300 transition">Enquiry Now</a>
+  </div>
+</nav>
+<!-- Navbar End -->
+
+
+ <!-- **Hero Section** -->
+    <section class="relative overflow-hidden bg-gradient-to-r from-indigo-50 to-purple-50">
+        <!-- **Background Elements** -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-indigo-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float"></div>
+            <div class="absolute top-1/3 right-0 w-96 h-96 bg-purple-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float delay-200"></div>
+            <div class="absolute bottom-0 left-1/3 w-80 h-80 bg-violet-100 rounded-full opacity-20 mix-blend-multiply filter blur-3xl animate-float delay-400"></div>
+        </div>
+
+        <!-- **Main Content** -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-28 lg:py-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- **Left Column - Text Content** -->
+                <div class="animate-fade">
+                    <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm mb-6">
+                        <i class="fas fa-palette text-indigo-600 mr-2"></i>
+                        <span class="text-sm font-medium text-gray-700">Handmade with Love</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                        <span class="block text-gray-900">Exquisite</span>
+                        <span class="text-gradient">Handicrafts & Stationery</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-600 mb-8 max-w-lg">
+                        Discover unique handmade crafts and premium stationery that blend artistry with functionality. Perfect for gifting, decor, and creative expression.
+                    </p>
+                    
+                    <!-- **Quick Categories** -->
+                    <div class="flex flex-wrap gap-4 mb-10">
+                        <a href="#handicrafts" class="category-chip bg-white px-6 py-2 rounded-full shadow-sm text-gray-700 font-medium transition-all duration-300 hover:shadow-md">
+                            <i class="fas fa-hands-helping mr-2"></i> Handicrafts
+                        </a>
+                        <a href="#stationery" class="category-chip bg-white px-6 py-2 rounded-full shadow-sm text-gray-700 font-medium transition-all duration-300 hover:shadow-md">
+                            <i class="fas fa-pen-fancy mr-2"></i> Stationery
+                        </a>
+                        <a href="#gifts" class="category-chip bg-white px-6 py-2 rounded-full shadow-sm text-gray-700 font-medium transition-all duration-300 hover:shadow-md">
+                            <i class="fas fa-gift mr-2"></i> Gift Sets
+                        </a>
+                    </div>
+                    
+                    <!-- **CTA Buttons** -->
+                     <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="../enquiry.html" class="cta-btn px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-medium shadow-lg transition-all duration-300">
+                            <i class="fas fa-shopping-bag mr-2"></i> Enquiry Now
+                        </a>
+                        <!-- <a href="#collections" class="cta-btn px-8 py-3 border border-indigo-600 text-indigo-600 bg-white rounded-lg font-medium shadow-lg transition-all duration-300">
+                            <i class="fas fa-box-open mr-2"></i> View Collections
+                        </a> -->
+                    </div> 
+                </div>
+                
+                <!-- **Right Column - Featured Product Image** -->
+                <div class="animate-fade delay-100">
+                    <div class="relative hover:scale-[1.02] transition-transform duration-300">
+                        <img src="http://www.athertrading.com/img/Handicrafts-and-Stationery.jpg" 
+                             alt="Handicrafts & Stationery" 
+                             class="w-full rounded-xl shadow-2xl">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg animate-float delay-300">
+                            <div class="flex items-center">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-star text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Artisan Quality</h4>
+                                    <p class="text-sm text-gray-600">Handcrafted Excellence</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gradient">Why Choose Our Products</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-amber-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-l-4 border-amber-700">
+                    <div class="text-amber-700 mb-4">
+                        <i class="fas fa-hands-helping text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-amber-900">Handcrafted Excellence</h3>
+                    <p class="text-gray-700">Each piece is meticulously crafted by skilled artisans using traditional techniques passed down through generations.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-amber-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-l-4 border-amber-700">
+                    <div class="text-amber-700 mb-4">
+                        <i class="fas fa-leaf text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-amber-900">Eco-Friendly Materials</h3>
+                    <p class="text-gray-700">We prioritize sustainable materials that are kind to the environment without compromising on quality or beauty.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-amber-50 p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border-l-4 border-amber-700">
+                    <div class="text-amber-700 mb-4">
+                        <i class="fas fa-award text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-amber-900">Premium Quality</h3>
+                    <p class="text-gray-700">Our products undergo rigorous quality checks to ensure they meet the highest standards of durability and craftsmanship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ <!-- Stationery Section -->
+    <section id="stationery" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gradient">Our Stationery Collection</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Stationery 1 -->
+                <div class="bg-amber-50 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-book-open text-5xl text-amber-700 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2 text-amber-900">Premium Notebooks</h3>
+                        <p class="text-gray-700 mb-4">Handmade paper notebooks with leather covers, perfect for journaling and sketching.</p>
+                        <button class="bg-amber-700 hover:bg-amber-800 text-white py-2 px-6 rounded-full text-sm transition duration-300 mt-auto">
+                            Explore Collection
+                        </button>
+                    </div>
+                </div>
+                <!-- Stationery 2 -->
+                <div class="bg-amber-50 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-pen-fancy text-5xl text-amber-700 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2 text-amber-900">Artisan Pens</h3>
+                        <p class="text-gray-700 mb-4">Elegant writing instruments crafted from fine materials for a superior writing experience.</p>
+                        <button class="bg-amber-700 hover:bg-amber-800 text-white py-2 px-6 rounded-full text-sm transition duration-300 mt-auto">
+                            Explore Collection
+                        </button>
+                    </div>
+                </div>
+                <!-- Stationery 3 -->
+                <div class="bg-amber-50 rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-2 flex flex-col">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-paint-brush text-5xl text-amber-700 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2 text-amber-900">Art Supplies</h3>
+                        <p class="text-gray-700 mb-4">High-quality art materials for professionals and enthusiasts alike.</p>
+                        <button class="bg-amber-700 hover:bg-amber-800 text-white py-2 px-6 rounded-full text-sm transition duration-300 mt-auto">
+                            Explore Collection
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+<!--Image Layout  -->
+ <section class="py-12 px-4  bg-gradient-to-r from-indigo-100 to-amber-100">
+        <div class="container mx-auto">
+            <!-- Image Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                <!-- Image 1 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in">
+                    <img src="http://www.athertrading.com/img/handicrafts111.jpg" 
+                         alt="Leather Accessory" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 2 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-100">
+                    <img src="http://www.athertrading.com/img/handicrafts222.jpg" 
+                         alt="Leather Wallet" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 3 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-200">
+                    <img src="http://www.athertrading.com/img/handicrafts333.jpg" 
+                         alt="Leather Bag" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image 4 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts444.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 5 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts555.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Image 6 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts666.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 7 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts777.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 8 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts888.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 9 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts999.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 10 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts000.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 11 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts101.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image 12 -->
+                <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-500 group animate-fade-in animation-delay-300">
+                    <img src="http://www.athertrading.com/img/handicrafts112.jpg" 
+                         alt="Leather Notebook" 
+                         class="w-full h-48 sm:h-64 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-500">
+                        <div class="animate-zoom-in">
+                            <i class="fas fa-search-plus text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+<!-- Testimonials -->
+    <section class="py-16 bg-gradient-to-r from-blue-100 to-teal-100">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center mb-12 text-gradient">What Our Customers Say ?</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-600 mr-4">
+                            <i class="fas fa-quote-left text-3xl"></i>
+                        </div>
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The quality of these leather accessories is exceptional. I've had my wallet for two years and it still looks brand new!"</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-amber-900">Sarah Johnson</h4>
+                            <p class="text-gray-600 text-sm">Interior Designer</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-600 mr-4">
+                            <i class="fas fa-quote-left text-3xl"></i>
+                        </div>
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"As a corporate buyer, I appreciate both the quality and the unique designs. Our clients love receiving these as gifts."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-amber-900">Michael Chen</h4>
+                            <p class="text-gray-600 text-sm">Procurement Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-amber-600 mr-4">
+                            <i class="fas fa-quote-left text-3xl"></i>
+                        </div>
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The stationery products are not only beautiful but also highly functional. My productivity has improved since I started using them."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Patel" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-amber-900">Priya Patel</h4>
+                            <p class="text-gray-600 text-sm">Writer & Artist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+<!-- Footer Section -->
+<footer  class="bg-gray-900 text-white" id="footer">
+  <div class="py-10 border-b border-gray-700" class="footer-top">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Contact Info -->
+      <div class="footer-contact">
+        <div class="flex justify-center items-center">
+          <img src="../Images/logo.png" alt="logo" class="h-20 w-30 mb-6">
+        </div>
+        <p class="text-justify " style="font-size: 17px;">Established in 2020 and based in Raipur, Chhattisgarh, Ather Trading is a reputed and audited firm with a strong presence in the solar energy sector. With over 4 years of consistent and credible performance, we have built a trusted name in the wholesale supply of solar modules, raw materials, and scrap components</p>
+      </div>
+
+      <!-- Our Location -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Our Location</h4>
+        <div class="space-y-3 text-white pl-10">
+  
+          <!-- Name -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-user text-yellow-400 text-lg"></i>
+            <span>Mohd Naqueebul Haque</span>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-phone text-yellow-400 text-lg"></i>
+            <span>+91-6305781183</span>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-envelope text-yellow-400 text-lg"></i>
+            <span>ather.trading2016@gmail.com</span>
+          </div>
+
+          <!-- Address -->
+          <div class="flex items-start space-x-3">
+            <i class="fa-solid fa-location-dot text-yellow-400 text-lg mt-1"></i>
+            <span class="text-justify">Plot No. 39 , Beside  Sai  Ashirwad  Pride  City , Nanihal   Vihar , Mungeli Road , Pacheda  , Raipur, Chhattisgarh – 492101</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Essential Links -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Essential Links</h4>
+        <ul class="space-y-3 text-white pl-16">
+          <!-- Home -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-house text-yellow-400 text-lg"></i>
+            <a href="../index.html" class="hover:text-yellow-400 transition">Home</a>
+          </li>
+
+          <!-- About Us -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-user-group text-yellow-400 text-lg"></i>
+            <a href="../about.html" class="hover:text-yellow-400 transition">About Us</a>
+          </li>
+
+          <!-- Our Products -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-box-open text-yellow-400 text-lg"></i>
+            <a href="../product.html" class="hover:text-yellow-400 transition">Our Products</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-phone text-yellow-400 text-lg"></i>
+            <a href="../contact.html" class="hover:text-yellow-400 transition">Contact Us</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Social Networks -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Our Social Networks</h4>
+        <div class="flex justify-center items-center">
+          <img src="../Images/worldindia1.png" alt="World India 1" class="h-[120px] w-auto object-contain">
+        </div>
+
+
+        <div class="flex justify-center space-x-4 text-xl social-links mt-8">
+          <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-vimeo-v"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+   <!-- Copyright -->
+  
+  <div class="bg-gray-800 py-5" >
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-400">
+    © <span class="text-white font-semibold">Ather Trading 2025</span> | All Rights Reserved. 
+    <span class="block sm:inline">Designed By 
+      <a href="https://www.worldsindia.com" target="_blank" class="text-yellow-400 hover:underline">
+        www.worldsindia.com
+      </a>
+    </span>
+  </div>
+</div>
+
+
+</footer>
+<!-- Footer -->
+ 
+ 
+
+  <!-- JavaScript -->
+      <script src="script.js"></script>
+      <script>
+        // **Intersection Observer for Animations**
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+            observer.observe(el);
+        });
+
+
+         tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'zoom-in': 'zoomIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        zoomIn: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

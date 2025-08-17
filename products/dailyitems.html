@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>atherTrading</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Animations -->
+<style>
+  @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-fade { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .text-gradient {
+            background: linear-gradient(90deg, #4f46e5, #10b981);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .icon-hover:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+        }
+        .product-badge {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover .product-badge {
+            transform: translateY(-5px);
+            background-color: #4f46e5;
+            color: white;
+        }
+</style>
+</head>
+<body class=" font-sans">
+<!-- Navbar Start -->
+<nav class="bg-blue-700 text-white sticky top-0 z-50" style="  background: linear-gradient(90deg, #0d78adff 0%, #5939b1ff 80%);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between py-2 h-26 items-center">
+
+      <!-- LOGO Branding -->
+      <a href="Index.html" class="text-2xl font-bold flex items-center">
+        <img src="../Images/logo.png" alt="logo" style="height: 70px; width:120px;">
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-10 text-xl items-center">
+        <a href="../index.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">Home</a>
+        <a href="../about.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">About Us</a>
+        <div class="relative group">
+            <a href="../product.html"  class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 group-hover:after:scale-x-110">Our Products</a>
+            <!-- Dropdown Box -->
+            <div class="absolute left-0 mt-5 font-semibold w-64 bg-white text-sm text-black rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50" style="font-size:18px;">
+                <a href="../products/garment.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white ">Garments</a>
+                <a href="../products/food.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Food and Beverages</a>
+                <a href="../products/handicraft.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Handicrafts and Stationery</a>
+                <a href="../products/pet.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Pet Products</a>
+                <a href="../products/leather.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Leather Products</a>
+                <a href="../products/dailyitems.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Daily Useful Items</a>
+                <a href="../products/solar.html" class="block px-4 py-3 hover:bg-blue-600 hover:text-white">Solar Products</a>
+            </div>
+        </div>
+
+        <a href="../contact.html" class="relative font-semibold after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-110">Contact Us</a>
+      </div>
+
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="../enquiry.html" class="relative font-bold  hover:after:scale-x-110 text-3xl hover:text-yellow-400 text-yellow-500" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Enquiry Now</a>
+        <!-- <a href="./booknow.html" class="font-semibold bg-yellow-300 text-black px-4 py-2 rounded hover:bg-yellow-500 transition">Enquiry Now</a> -->
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-button" aria-label="Toggle Menu" class="focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 py-6 space-y-3">
+    <a href="../index.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Home</a>
+    <a href="../about.html" class="block text-white text-lg font-semibold hover:text-yellow-300">About Us </a>
+    <a href="../product.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Our Products </a>
+    <a href="../contact.html" class="block text-white text-lg font-semibold hover:text-yellow-300">Contact Us</a>
+    <a href="../enquiry.html" class="block text-center bg-yellow-400 text-black text-lg font-semibold py-2 rounded-md hover:bg-yellow-300 transition">Enquiry Now</a>
+  </div>
+</nav>
+<!-- Navbar End -->
+
+
+
+
+   <!-- **Hero Section** -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-blue-100 to-emerald-200">
+        <!-- **Background Elements** -->
+        <div class="absolute inset-0 z-0 opacity-20">
+            <div class="absolute top-10 left-10 w-40 h-40 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
+            <div class="absolute bottom-20 right-20 w-60 h-60 bg-emerald-200 rounded-full mix-blend-multiply filter blur-xl animate-float delay-200"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-8 lg:py-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- **Left Column - Text Content** -->
+                <div class="animate-fade">
+                    <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm mb-6">
+                        <i class="fas fa-bolt text-blue-600 mr-2"></i>
+                        <span class="text-sm font-medium text-gray-700">Essential Living</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+                        <span class="block text-gray-900">Upgrade Your</span>
+                        <span class="text-gradient">Daily Essentials</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-700 mb-8 max-w-lg">
+                        Discover premium daily use products designed for convenience, quality, and style. From kitchen must-haves to personal care, we've got your everyday needs covered.
+                    </p>
+                    
+                    
+
+                    <!-- **Trust Badges** -->
+                    <div class="flex flex-wrap gap-6 mt-5">
+                        <div class="flex items-center">
+                            <div class="bg-white p-2 rounded-full mr-3 icon-hover transition-transform">
+                                <i class="fas fa-check-circle text-emerald-500"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">Premium Quality</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-white p-2 rounded-full mr-3 icon-hover transition-transform">
+                                <i class="fas fa-truck text-blue-500"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">Fast Delivery</span>
+                        </div>
+                    </div>
+
+                    <!-- **CTA Buttons** -->
+                    <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                        <a href="../enquiry.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium flex items-center justify-center hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl">
+                            <i class="fas fa-shopping-cart mr-2 "></i> Enquiry Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- **Right Column - Product Showcase** -->
+                <div class="animate-fade delay-100">
+                    <div class="relative">
+                        <!-- **Main Product Image** -->
+                        <div class="hover-scale  p-6 rounded-2xl shadow-2xl ">
+                            <img src="http://www.athertrading.com/img/Personal-Care-Products.jpg" 
+                                 alt="Daily Use Products" 
+                                 class="w-full rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+  <!-- **Personal Care Products Section** -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 w-full bg-gradient-to-r from-blue-100 to-emerald-50">
+        <!-- **Header** -->
+        <div class="text-center mb-16 animate-fade">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <span class="text-gradient">Essential Personal Care Products</span> for Your Well-Being
+            </h2>
+            <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Premium personal care products designed to enhance your hygiene, health, and confidence
+            </p>
+        </div>
+
+        <!-- **Product Categories Grid** -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- **Bath & Body** -->
+            <div class="product-card bg-white rounded-xl shadow-md p-6 text-center transition-transform animate-fade delay-100">
+                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover transition-transform">
+                    <i class="fas fa-bath text-blue-600 text-2xl"></i>
+                </div>
+                <div class="category-badge bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
+                    Bath & Body
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Soaps & Body Wash</h3>
+                <p class="text-gray-600 mb-4">
+                    Gentle cleansers for all skin types with nourishing ingredients
+                </p>
+                <a href="../enquiry.html" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                    Enquiry Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- **Hair Care** -->
+            <div class="product-card bg-white rounded-xl shadow-md p-6 text-center transition-transform animate-fade delay-200">
+                <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover transition-transform">
+                    <i class="fas fa-spa text-purple-600 text-2xl"></i>
+                </div>
+                <div class="category-badge bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
+                    Hair Care
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Shampoos & Conditioners</h3>
+                <p class="text-gray-600 mb-4">
+                    Formulas for all hair types to nourish and strengthen
+                </p>
+                <a href="../enquiry.html" class="text-purple-600 hover:text-purple-800 font-medium inline-flex items-center">
+                   Enquiry Now<i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- **Oral Care** -->
+            <div class="product-card bg-white rounded-xl shadow-md p-6 text-center transition-transform animate-fade delay-300">
+                <div class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover transition-transform">
+                    <i class="fas fa-tooth text-emerald-600 text-2xl"></i>
+                </div>
+                <div class="category-badge bg-emerald-50 text-emerald-600 px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
+                    Oral Care
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Toothpaste & Brushes</h3>
+                <p class="text-gray-600 mb-4">
+                    Complete dental hygiene solutions for healthy smiles
+                </p>
+                <a href="../enquiry.html" class="text-emerald-600 hover:text-emerald-800 font-medium inline-flex items-center">
+                    Enquiry Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- **Skin Care** -->
+            <div class="product-card bg-white rounded-xl shadow-md p-6 text-center transition-transform animate-fade delay-400">
+                <div class="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover transition-transform">
+                    <i class="fas fa-hand-holding-heart text-pink-600 text-2xl"></i>
+                </div>
+                <div class="category-badge bg-pink-50 text-pink-600 px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
+                    Skin Care
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Moisturizers & Face Wash</h3>
+                <p class="text-gray-600 mb-4">
+                    Dermatologist-tested products for radiant skin
+                </p>
+                <a href="../enquiry.html" class="text-pink-600 hover:text-pink-800 font-medium inline-flex items-center">
+                    Enquiry Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- **Featured Benefits Section** -->
+        <div class="mt-16 bg-white rounded-xl shadow-md overflow-hidden animate-fade delay-500">
+            <div class="grid md:grid-cols-2">
+                <!-- **Left Column - Image** -->
+                <div class="hover:scale-105 transition-transform duration-300">
+                    <img src="http://www.athertrading.com/img/Personal-Care-Products.jpg" 
+                         alt="Personal Care Products" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- **Right Column - Text** -->
+                <div class="p-8 md:p-10">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Why Choose Our Personal Care Products?</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Made with natural, skin-friendly ingredients</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Dermatologist-tested for sensitive skin</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Free from harmful chemicals and parabens</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Designed for daily use with long-lasting benefits</span>
+                        </li>
+                    </ul>
+                    <a href="../contact.html" class="mt-8 inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-shopping-basket mr-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+ <!-- **Household Essentials Section** -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 w-full bg-gradient-to-r from-blue-100 to-amber-100">
+        <!-- **Header** -->
+        <div class="text-center mb-16 animate-fade">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <span class="text-gradient">Home Essentials</span> for Everyday Living
+            </h2>
+            <div class="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Premium household products designed to keep your home clean, organized, and comfortable
+            </p>
+        </div>
+
+        <!-- **Product Categories Grid** -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- **Cleaning Supplies** -->
+            <div class="product-card bg-white rounded-xl shadow-md p-6 text-center transition-transform animate-fade delay-100">
+                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover transition-transform">
+                    <i class="fas fa-broom text-blue-600 text-2xl"></i>
+                </div>
+                <div class="category-badge bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
+                    Cleaning Supplies
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Mops & Brooms</h3>
+                <p class="text-gray-600 mb-4">
+                    Quality cleaning tools for sparkling floors and surfaces
+                </p>
+                <a href="../enquiry.html" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                    Enquiry Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- **Kitchen Essentials** -->
+            <div class="product-card bg-white rounded-xl shadow-md p-6 text-center transition-transform animate-fade delay-200">
+                <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover transition-transform">
+                    <i class="fas fa-utensils text-amber-600 text-2xl"></i>
+                </div>
+                <div class="category-badge bg-amber-50 text-amber-600 px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
+                    Kitchen Essentials
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Utensils & Containers</h3>
+                <p class="text-gray-600 mb-4">
+                    Must-have tools for efficient cooking and food storage
+                </p>
+                <a href="../enquiry.html" class="text-amber-600 hover:text-amber-800 font-medium inline-flex items-center">
+                    Enquiry Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- **Bathroom Necessities** -->
+            <div class="product-card bg-white rounded-xl shadow-md p-6 text-center transition-transform animate-fade delay-300">
+                <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover transition-transform">
+                    <i class="fas fa-toilet-paper text-teal-600 text-2xl"></i>
+                </div>
+                <div class="category-badge bg-teal-50 text-teal-600 px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
+                    Bathroom Necessities
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Hygiene Products</h3>
+                <p class="text-gray-600 mb-4">
+                    Essentials for a fresh and clean bathroom
+                </p>
+                <a href="../enquiry.html" class="text-teal-600 hover:text-teal-800 font-medium inline-flex items-center">
+                    Enquiry Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- **Laundry & Storage** -->
+            <div class="product-card bg-white rounded-xl shadow-md p-6 text-center transition-transform animate-fade delay-400">
+                <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 icon-hover transition-transform">
+                    <i class="fas fa-tshirt text-purple-600 text-2xl"></i>
+                </div>
+                <div class="category-badge bg-purple-50 text-purple-600 px-3 py-1 rounded-full text-xs font-medium inline-block mb-3">
+                    Laundry & Storage
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Detergents & Organizers</h3>
+                <p class="text-gray-600 mb-4">
+                    Solutions for fresh laundry and clutter-free spaces
+                </p>
+                <a href="../enquiry.html" class="text-purple-600 hover:text-purple-800 font-medium inline-flex items-center">
+                    Enquiry Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- **Featured Benefits Section** -->
+        <div class="mt-16 bg-white rounded-xl shadow-md overflow-hidden animate-fade delay-500">
+            <div class="grid md:grid-cols-2">
+                <!-- **Left Column - Image** -->
+                <div class="hover:scale-105 transition-transform duration-300">
+                    <img src="http://www.athertrading.com/img/Household-essentials.jpg" 
+                         alt="Household Essentials" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- **Right Column - Text** -->
+                <div class="p-8 md:p-10">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Why Our Household Essentials?</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Durable and long-lasting quality materials</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Eco-friendly options available</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Designed for convenience and efficiency</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                            <span>Affordable prices for everyday needs</span>
+                        </li>
+                    </ul>
+                    <a href="../contact.html" class="mt-8 inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-home mr-2"></i> Contact Us 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+<!-- Footer Section -->
+<footer  class="bg-gray-900 text-white" id="footer">
+  <div class="py-10 border-b border-gray-700" class="footer-top">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Contact Info -->
+      <div class="footer-contact">
+        <div class="flex justify-center items-center">
+          <img src="../Images/logo.png" alt="logo" class="h-20 w-30 mb-6">
+        </div>
+        <p class="text-justify " style="font-size: 17px;">Established in 2020 and based in Raipur, Chhattisgarh, Ather Trading is a reputed and audited firm with a strong presence in the solar energy sector. With over 4 years of consistent and credible performance, we have built a trusted name in the wholesale supply of solar modules, raw materials, and scrap components</p>
+      </div>
+
+      <!-- Our Location -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Our Location</h4>
+        <div class="space-y-3 text-white pl-10">
+  
+          <!-- Name -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-user text-yellow-400 text-lg"></i>
+            <span>Mohd Naqueebul Haque</span>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-phone text-yellow-400 text-lg"></i>
+            <span>+91-6305781183</span>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-envelope text-yellow-400 text-lg"></i>
+            <span>ather.trading2016@gmail.com</span>
+          </div>
+
+          <!-- Address -->
+          <div class="flex items-start space-x-3">
+            <i class="fa-solid fa-location-dot text-yellow-400 text-lg mt-1"></i>
+            <span class="text-justify">Plot No. 39 , Beside  Sai  Ashirwad  Pride  City , Nanihal   Vihar , Mungeli Road , Pacheda  , Raipur, Chhattisgarh – 492101</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Essential Links -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Essential Links</h4>
+        <ul class="space-y-3 text-white pl-16">
+          <!-- Home -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-house text-yellow-400 text-lg"></i>
+            <a href="../index.html" class="hover:text-yellow-400 transition">Home</a>
+          </li>
+
+          <!-- About Us -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-user-group text-yellow-400 text-lg"></i>
+            <a href="../about.html" class="hover:text-yellow-400 transition">About Us</a>
+          </li>
+
+          <!-- Our Products -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-box-open text-yellow-400 text-lg"></i>
+            <a href="../product.html" class="hover:text-yellow-400 transition">Our Products</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="flex items-center space-x-3">
+            <i class="fa-solid fa-phone text-yellow-400 text-lg"></i>
+            <a href="../contact.html" class="hover:text-yellow-400 transition">Contact Us</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Social Networks -->
+      <div class="footer-links">
+        <h4 class="text-lg font-semibold mb-4">Our Social Networks</h4>
+        <div class="flex justify-center items-center">
+          <img src="../Images/worldindia1.png" alt="World India 1" class="h-[120px] w-auto object-contain">
+        </div>
+
+
+        <div class="flex justify-center space-x-4 text-xl social-links mt-8">
+          <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-vimeo-v"></i></a>
+          <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+   <!-- Copyright -->
+  
+  <div class="bg-gray-800 py-5" >
+  <div class="max-w-7xl mx-auto px-4 text-center text-sm text-gray-400">
+    © <span class="text-white font-semibold">Ather Trading 2025</span> | All Rights Reserved. 
+    <span class="block sm:inline">Designed By 
+      <a href="https://www.worldsindia.com" target="_blank" class="text-yellow-400 hover:underline">
+        www.worldsindia.com
+      </a>
+    </span>
+  </div>
+</div>
+
+
+</footer>
+<!-- Footer -->
+ 
+ 
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+  <script>
+        // **Intersection Observer for Animations**
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
